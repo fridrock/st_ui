@@ -3,17 +3,15 @@ import { useAuthFetch, USERS_ENDPOINT } from "../../utils"
 import Button from "../default/Button"
 import CreateGroup from "./CreateGroup"
 import GroupsList from "./GroupsList"
+import GroupDescription from "./GroupDescription"
 
 export default function Groups(){
     const [tab, setTab] = useState('list')
-    // const authFetch = useAuthFetch()
-    // async function callSomething(){
-    //     const response = await authFetch(`${USERS_ENDPOINT}/users/byEmail?${new URLSearchParams({email:"j"})}`, {method:"GET"})
-    //     console.log(await response.json())
-    // }
-    // useEffect(()=>{
-    //     callSomething()
-    // },[])
+    const [choosenGroup, setChoosenGroup] = useState(null)
+    function goBack(){
+        setChoosenGroup(null)
+        setTab("list")
+    }
     return (
         <div className="flex flex-col justify-start items-center">
             <div className="flex justify-around w-2/12">
@@ -22,7 +20,8 @@ export default function Groups(){
             </div>
             <div className="flex width-screen">
                 {tab === "create" && <CreateGroup setTab={setTab}></CreateGroup>}
-                {tab === "list" && <GroupsList setTab={setTab}></GroupsList>}
+                {tab === "list" && <GroupsList setTab={setTab} setChoosenGroup={setChoosenGroup}></GroupsList>}
+                {tab === "groupDescription" && choosenGroup && <GroupDescription group={choosenGroup} goBack={goBack}></GroupDescription>}
             </div>
         </div>
     )

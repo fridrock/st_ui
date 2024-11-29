@@ -2,7 +2,7 @@ import { useEffect, useState } from "react"
 import { useAuthFetch, TESTS_ENDPOINT } from "../../utils"
 import TestElement from "./TestElement"
 
-export default function TestsList({setTab}){
+export default function TestsList({setTab, setChoosenTest}){
     const [tests, setTests] = useState([])
     const authFetch = useAuthFetch()
 
@@ -22,7 +22,7 @@ export default function TestsList({setTab}){
 
     return (
         <div className="flex flex-col w-screen items-center">
-            {tests && tests.map(g=><TestElement name={g.name}></TestElement>)}
+            {tests && tests.map(t=><TestElement test={t} setTab={setTab} setChoosenTest={setChoosenTest}></TestElement>)}
         </div>
     )
 }

@@ -18,6 +18,8 @@ export default function Header(){
         <header className="flex justify-around w-screen p-10  ">
             <Button onClick={()=>setPage('groups')} text="Groups" visible={authorized && roleName === "TEACHER"}></Button>
             <Button onClick={()=>setPage('tests')} text="Tests" visible={authorized && roleName === "TEACHER"}></Button>
+            <Button onClick={()=>setPage('mytests')} text="My tests" visible={authorized && roleName === "STUDENT"}></Button>
+            <Button onClick={()=>setPage('myresults')} text="My results" visible={authorized && roleName === "STUDENT"}></Button>
             <Button onClick={()=>setPage("login")} text="Login" visible={!authorized}/>
             <Button onClick={()=>setPage("main")} text="main"/>
             <Button visible={authorized} text="Logout" onClick={logout}></Button>

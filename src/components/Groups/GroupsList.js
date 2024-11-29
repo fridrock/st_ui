@@ -2,7 +2,7 @@ import { useEffect, useState } from "react"
 import { useAuthFetch, USERS_ENDPOINT } from "../../utils"
 import GroupElement from "./GroupElement"
 
-export default function GroupList({setTab}){
+export default function GroupList({setTab, setChoosenGroup}){
     const [groups, setGroups] = useState([])
     const authFetch = useAuthFetch()
 
@@ -22,7 +22,7 @@ export default function GroupList({setTab}){
 
     return (
         <div className="flex flex-col w-screen items-center">
-            {groups && groups.map(g=><GroupElement name={g.name}></GroupElement>)}
+            {groups && groups.map(g=><GroupElement key={g.id} group={g} setTab={setTab} setChoosenGroup={setChoosenGroup}></GroupElement>)}
         </div>
     )
 }
