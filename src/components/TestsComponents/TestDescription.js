@@ -14,8 +14,8 @@ export default function TestDescription({test, goBack}){
                 <h1 className="ml-5">{test.name}</h1>
                 <Button text="Questions" onClick={()=>setTab("questions")} highlighted={tab==="questions"}></Button>
                 <Button text="Add question" onClick={()=>setTab("addQuestion")} highlighted={tab==="addQuestion"}></Button>
-                <Button text="List" onClick={()=>setTab("list")} highlighted={tab==="list"}></Button>
-                <Button text="Add" onClick={()=>setTab("add")} highlighted={tab=== "add"}></Button>
+                <Button text="List of groups" onClick={()=>setTab("list")} highlighted={tab==="list"}></Button>
+                <Button text="Add group" onClick={()=>setTab("add")} highlighted={tab=== "add"}></Button>
             </div>
             {tab == "questions" && <Questions test={test}></Questions>}
             {tab == "addQuestion" && <AddQuestion test={test}></AddQuestion>}

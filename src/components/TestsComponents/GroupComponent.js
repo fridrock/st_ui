@@ -3,6 +3,7 @@ import Button from "../default/Button";
 import { TESTS_ENDPOINT, useAuthFetch, USERS_ENDPOINT } from "../../utils";
 import StudentResult from "./StudentResult";
 
+
 export default function GroupComponent({test, group, deleteFromTest}){
     const [resultsShown, setResultsShown] = useState(false)
     const [resultsList, setResultsList] = useState([]) 
@@ -12,14 +13,19 @@ export default function GroupComponent({test, group, deleteFromTest}){
         if(response.status == 200){
             let users = await response.json()
             let results = await Promise.all(
-                users.map(u=> getResult(u.id))
+                users.map(u=>getResult(u.id))
             )
             console.log(results)
-            let combined = []
-            for(let i = 0;i<users.length;i++){
-                combined.push(createUserInfoAndResult(users[i], results[i]))
+            results = results.filter(r=>r!==undefined)
+            console.log(results)
+            if(results.length!=0){
+                let combined = []
+                for(let i = 0;i<users.length;i++){
+                    combined.push(createUserInfoAndResult(users[i], results[i]))
+                }
+                setResultsList(combined)
             }
-            setResultsList(combined)
+            
         }
     }
 

@@ -12,6 +12,7 @@ export default function CreateTest({setTab}){
             body: JSON.stringify({name})
         })
         if (response.status == 200){
+            setName('')
             setTab("list")
         }
     }

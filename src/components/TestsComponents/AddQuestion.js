@@ -37,6 +37,10 @@ const AddQuestion = ({test}) => {
             responses: answers
         })
     })
+    if(response.status == 200){
+      setQuestion('')
+      setAnswers([{responseText: '', correctness: false}])
+    }
 
   };
 

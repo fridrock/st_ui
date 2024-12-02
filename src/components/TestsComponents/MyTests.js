@@ -1,9 +1,11 @@
 import { useEffect, useState } from "react"
 import MyTest from "./MyTest"
 import { TESTS_ENDPOINT, useAuthFetch, USERS_ENDPOINT } from "../../utils"
+import RunningTest from "./RunningTest"
 
 export default function MyTests(){
     const [tests, setTests] = useState([])
+    const [startedTest, setStartedTest] = useState(null)
     const authFetch = useAuthFetch()
     async function getTests(){
         const userInfo = await getUserInfo()
@@ -25,7 +27,8 @@ export default function MyTests(){
     return (
         <div className="flex flex-col w-screen justify-start items-center">
             <h1 className="text-xl">My Tests</h1>
-            {tests && tests.map(t=><MyTest test={t}></MyTest>)}
+            {startedTest === null && tests && tests.map(t=><MyTest test={t} startTest={()=>setStartedTest(t)}></MyTest>)}
+            {startedTest && <RunningTest test={startedTest} goBack={()=>setStartedTest(null)}></RunningTest>}
         </div>
     )
 }
